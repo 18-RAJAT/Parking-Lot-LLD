@@ -239,3 +239,136 @@ bool Admin::addParkingDisplayBoard(ParkingFloor floor,ParkingDisplayBoard displa
 {
     return true;
 }
+
+int main()
+{
+    ParkingLot parkingLot;
+    
+    cout<<"System Design for Parking Lot"<<"\n";
+
+    cout<<"Enter the details of the Parking Lot: "<<"\n";
+    
+    cout<<"Parking Lot Name: ";
+    parkingLot.parkingLotName;
+    cin>>parkingLot.parkingLotName;
+
+    cout<<"Country: ";
+    parkingLot.address.country;
+    cin>>parkingLot.address.country;
+
+    cout<<"State: ";
+    parkingLot.address.state;
+    cin>>parkingLot.address.state;
+    
+    cout<<"City: ";
+    parkingLot.address.city;
+    cin>>parkingLot.address.city;
+    
+    cout<<"Street: ";
+    parkingLot.address.street;
+    cin>>parkingLot.address.street;
+    
+    cout<<"Pin Code: ";
+    parkingLot.address.pinCode;
+    cin>>parkingLot.address.pinCode;
+
+    ParkingFloor parkingFloor;
+
+    cout<<"Level Id: ";
+    parkingFloor.levelId;
+    cin>>parkingFloor.levelId;
+
+    ParkingSpace parkingSpace;
+
+    cout<<"Space Id: ";
+    parkingSpace.spaceId;
+    cin>>parkingSpace.spaceId;
+
+    ParkingDisplayBoard parkingDisplayBoard;
+
+    cout<<"Free Spots Available for Bike Parking: ";
+    parkingDisplayBoard.freeSpotsAvailable[ParkingSpaceType::BikeParking];
+    cin>>parkingDisplayBoard.freeSpotsAvailable[ParkingSpaceType::BikeParking];
+
+    cout<<"Free Spots Available for Car Parking: ";
+    parkingDisplayBoard.freeSpotsAvailable[ParkingSpaceType::CarParking];
+    cin>>parkingDisplayBoard.freeSpotsAvailable[ParkingSpaceType::CarParking];
+
+    cout<<"Free Spots Available for Heavy Vehicle Parking: ";
+    parkingDisplayBoard.freeSpotsAvailable[ParkingSpaceType::HeavyVehicleParking];
+    cin>>parkingDisplayBoard.freeSpotsAvailable[ParkingSpaceType::HeavyVehicleParking];
+
+    Admin admin;
+    admin.addParkingFloor(parkingLot, parkingFloor);
+    admin.addParkingSpace(parkingFloor, parkingSpace);
+    admin.addParkingDisplayBoard(parkingFloor, parkingDisplayBoard);
+
+    ParkingAttendant parkingAttendant;
+
+    cout<<"Name of the Parking Attendant: ";
+    parkingAttendant.name;
+    cin>>parkingAttendant.name;
+    
+    cout<<"Email id of the Parking Attendant: ";
+    parkingAttendant.email;
+    cin>>parkingAttendant.email;
+
+    parkingLot.updateParkingAttendant(parkingAttendant, 1);
+
+    Vehicle vehicle;
+
+    cout<<"License Number of the Vehicle: "<<"\n";//ex: MH 12 AB 1234
+    vehicle.licenseNumber;
+    cin>>vehicle.licenseNumber;
+    
+    vehicle.vehicleType;
+
+    parkingAttendant.processVehicleEntry(vehicle);
+
+    PaymentInfo paymentInfo;
+
+    cout<<"Amount for Parking: ";
+    paymentInfo.amount;
+    cin>>paymentInfo.amount;
+    
+    cout<<"Payment Time: ";
+    paymentInfo.paymentTime;
+    cin>>paymentInfo.paymentTime;
+    
+    cout<<"Transaction Id: ";
+    paymentInfo.transactionId;
+    cin>>paymentInfo.transactionId;
+
+    cout<<"Dashboard for Parking Lot: "<<"\n";
+    cout<<parkingLot.parkingLotName<<"\n";
+    cout<<parkingLot.address.country<<"\n";
+    cout<<parkingLot.address.state<<"\n";
+    cout<<parkingLot.address.city<<"\n";
+    cout<<parkingLot.address.street<<"\n";
+    cout<<parkingLot.address.pinCode<<"\n";
+
+    cout<<"Parking Floor: "<<"\n";
+    cout<<parkingFloor.levelId<<"\n";
+
+    cout<<"Parking Space: "<<"\n";
+    cout<<parkingSpace.spaceId<<"\n";
+
+    cout<<"Parking Display Board: "<<"\n";
+    cout<<parkingDisplayBoard.freeSpotsAvailable[ParkingSpaceType::BikeParking]<<"\n";
+    cout<<parkingDisplayBoard.freeSpotsAvailable[ParkingSpaceType::CarParking]<<"\n";
+    cout<<parkingDisplayBoard.freeSpotsAvailable[ParkingSpaceType::HeavyVehicleParking]<<"\n";
+
+    cout<<"Parking Attendant: "<<"\n";
+    cout<<parkingAttendant.name<<"\n";
+    cout<<parkingAttendant.email<<"\n";
+
+    cout<<"Vehicle: "<<"\n";
+    cout<<vehicle.licenseNumber<<"\n";
+    // cout<<vehicle.vehicleType<<"\n";
+
+    cout<<"Payment Info: "<<"\n";
+    cout<<paymentInfo.amount<<"\n";
+    cout<<paymentInfo.paymentTime<<"\n";
+    cout<<paymentInfo.transactionId<<"\n";
+    return 0;
+}
