@@ -1,9 +1,9 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Address
 {
-    public:
+public:
     string country;
     string state;
     string city;
@@ -23,7 +23,7 @@ enum class ParkingSpaceType
 {
     BikeParking,
     CarParking,
-    HeavyVehicleParking//Truck, Bus etc
+    HeavyVehicleParking // Truck, Bus etc
 };
 
 enum class VehicleType
@@ -53,20 +53,25 @@ enum class PaymentStatus
 
 class PaymentInfo
 {
-    public:
+public:
     double amount;
-    time_t paymentTime;//time_t is a data type in the ISO C library defined for storing system time values.
+    time_t paymentTime; // time_t is a data type in the ISO C library defined for storing system time values.
     int transactionId;
-    //add reference to parking ticket
+    // add reference to parking ticket
     PaymentStatus status;
     PaymentType type;
 };
 
 class Payment
 {
-    public:
+public:
     bool addPaymentInfo(PaymentInfo paymentInfo);
 };
+
+bool Payment ::addPaymentInfo(PaymentInfo PaymentInfo)
+{
+    return true;
+}
 
 class ParkingTicket
 {
@@ -84,16 +89,29 @@ class ParkingTicket
     void updateVehicleExitTime(time_t vehicleExitTime);
 };
 
+void ParkingTicket::updateTotalCost()
+{
+}
+
+void ParkingTicket::updateVehicleExitTime(time_t VehicleExitTime)
+{
+}
+
 class ParkingDisplayBoard
 {
-    public:
-    map<ParkingSpaceType,int>freeSpotsAvailable;
+public:
+    map<ParkingSpaceType,int> freeSpotsAvailable;
     void updateFreeSpotsAvailable(ParkingSpaceType type,int spaces);
 };
 
+void ParkingDisplayBoard::updateFreeSpotsAvailable(ParkingSpaceType type,int spaces)
+{
+    //add
+}
+
 class ParkingSpace
 {
-    public:
+public:
     int spaceId;
     bool isFree;
     double costPerHour;
@@ -102,43 +120,83 @@ class ParkingSpace
 
 class ParkingFloor
 {
-    public:
+public:
     int levelId;
     vector<ParkingSpace>parkingSpaces;
     ParkingDisplayBoard displayBoard;
 };
 
-class Gate
-{
-    public:
-    int gateId;
-    bool isEntry;
-};
-
-class Entrance:public Gate
-{
-    public:
-    ParkingTicket getParkingTicket(Vehicle vehicle);
-};
-
-class Exit:public Gate
-{
-    public:
-    ParkingTicket payForParking(ParkingTicket ticket,PaymentType Payment);
-};
-
 class Vehicle
 {
-    public:
+public:
     string licenseNumber;
     VehicleType vehicleType;
     ParkingTicket parkingTicket;
     PaymentInfo paymentInfo;
 };
 
+class Gate
+{
+public:
+    int gateId;
+    bool isEntry;
+};
+
+class Entrance : public Gate
+{
+public:
+    ParkingTicket getParkingTicket(Vehicle vehicle);
+};
+
+ParkingTicket Entrance::getParkingTicket(Vehicle vehicle)
+{
+    ParkingTicket obj;
+    return obj;
+}
+
+class Exit : public Gate
+{
+public:
+    ParkingTicket payForParking(ParkingTicket ticket, PaymentType Payment);
+};
+
+ParkingTicket Exit::payForParking(ParkingTicket ticket, PaymentType Payment)
+{
+    return ticket;
+}
+
+class Account
+{
+public:
+    string name;
+    string email;
+    string password;
+    string empId;
+    Address address;
+};
+
+
+class ParkingAttendant : public Account
+{
+public:
+    Payment paymentService;
+    bool processVehicleEntry(Vehicle vehicle);
+    bool processPayment(ParkingTicket ticket, PaymentType paymentType);
+};
+
+bool ParkingAttendant::processVehicleEntry(Vehicle vehicle)
+{
+    return true;
+}
+
+bool ParkingAttendant::processPayment(ParkingTicket ticket, PaymentType paymentType)
+{
+    return true;
+}
+
 class ParkingLot
 {
-    public:
+public:
     vector<ParkingFloor>parkingFloors;
     vector<Gate>entrance;
     vector<Gate>exit;
@@ -149,28 +207,35 @@ class ParkingLot
     bool updateParkingAttendant(ParkingAttendant parkingAttendant,int gateId);
 };
 
-class Account
+bool ParkingLot::isParkingSpaceAvailableForVehicle(Vehicle vehicle)
 {
-    public:
-    string name;
-    string email;
-    string password;
-    string empId;
-    Address address;
-};
+    return true;
+}
+
+bool ParkingLot::updateParkingAttendant(ParkingAttendant parkingAttendant,int gateId)
+{
+    return true;
+}
 
 class Admin
 {
-    public:
+public:
     bool addParkingFloor(ParkingLot parkingLot,ParkingFloor floor);
     bool addParkingSpace(ParkingFloor floor,ParkingSpace space);
     bool addParkingDisplayBoard(ParkingFloor floor,ParkingDisplayBoard displayBoard);
 };
 
-class ParkingAttendant:public Account
+bool Admin::addParkingFloor(ParkingLot parkingLot,ParkingFloor floor)
 {
-    public:
-    Payment paymentService;
-    bool processVehicleEntry(Vehicle vehicle);
-    bool processPayment(ParkingTicket ticket,PaymentType paymentType);
-};
+    return true;
+}
+
+bool Admin::addParkingSpace(ParkingFloor floor,ParkingSpace space)
+{
+    return true;
+}
+
+bool Admin::addParkingDisplayBoard(ParkingFloor floor,ParkingDisplayBoard displayBoard)
+{
+    return true;
+}
